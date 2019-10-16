@@ -38,7 +38,7 @@ class App extends React.Component {
 
     state = {
         selectedIndexes: [],
-        background: []
+        background: {}
     };
 
     select = (index) => {
@@ -47,24 +47,24 @@ class App extends React.Component {
         if(selectedIndexes.includes(index)){
             this.setState(prevState => ({
                 selectedIndexes : prevState.selectedIndexes.filter((e) =>  e !== index ),
-                background
+                ...background
             }))
         }else{
             this.setState({
                     ...this.state.selectedIndexes.push(index),
-                background
+                    ...background
                 }
             )
         }
     };
 
-    gridRender = (value, index) => (
-        <div key={index} onClick={(e) => this.select(value.id)} className={ this.state.background[index] ? 'gridBack' : 'grid'}>
+    gridRender = (value) => (
+        <div key={value.id} onClick={() => this.select(value.id)} className={ this.state.background[value.id] ? 'gridBack' : 'grid'}>
             <div className='name-content'>
                 <h2>{value.name}</h2>
             </div>
             <div>
-                <img src={value.url} alt={index} className='image'/>
+                <img src={value.url} alt={value.id} className='image'/>
             </div>
         </div>
     );
@@ -76,7 +76,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                {json.map((value, index) => this.gridRender(value, index))}
+                {json.map((value) => this.gridRender(value))}
                 <button onClick={this.onSubmit} className='submit'>
                     Submit
                 </button>

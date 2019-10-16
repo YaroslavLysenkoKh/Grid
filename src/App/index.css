@@ -8,7 +8,7 @@
 
 h2{
     position: relative;
-    top: 50%;
+    top: 40%;
 }
 
 .submit{
@@ -20,6 +20,7 @@ h2{
     text-align: center;
     text-decoration: none;
     font-size: 25px;
+    margin-top: 15px;
 }
 
 .gridBack{
@@ -29,4 +30,8 @@ h2{
     border-color: black;
     border-style: solid;
     background-color: aquamarine;
+}
+
+.App{
+    text-align: center;
 }
