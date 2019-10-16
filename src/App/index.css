@@ -22,10 +22,11 @@ h2{
     font-size: 25px;
 }
 
-.active {
-    background-color: #4492ff;
-}
-
-.inactive {
-    background-color: #FFFFFF;
+.gridBack{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-color: black;
+    border-style: solid;
+    background-color: aquamarine;
 }

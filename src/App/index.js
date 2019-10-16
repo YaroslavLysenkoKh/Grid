@@ -38,30 +38,28 @@ class App extends React.Component {
 
     state = {
         selectedIndexes: [],
-        background: false,
+        background: []
     };
 
-    select = (e, index) => {
-        let target = e.target;
-        let status = target.classList.contains('active');
-        let selection = [...this.state.selectedIndexes];
-        if(selection.includes(index)){
-            target.classList.remove(status ? 'active' : 'inactive');
-            const filteredAry = selection.filter((e) =>  e !== index );
-            this.setState({
-                selectedIndexes : filteredAry
-            })
+    select = (index) => {
+        const { selectedIndexes , background } = this.state;
+        background[index] = !background[index];
+        if(selectedIndexes.includes(index)){
+            this.setState(prevState => ({
+                selectedIndexes : prevState.selectedIndexes.filter((e) =>  e !== index ),
+                background
+            }))
         }else{
-            target.classList.add(status ? 'inactive' : 'active');
             this.setState({
                     ...this.state.selectedIndexes.push(index),
+                background
                 }
             )
         }
     };
 
-    gridRender = (e, value, index) => (
-        <div key={index} onClick={(e) => this.select(e, value.id)} className='grid'>
+    gridRender = (value, index) => (
+        <div key={index} onClick={(e) => this.select(value.id)} className={ this.state.background[index] ? 'gridBack' : 'grid'}>
             <div className='name-content'>
                 <h2>{value.name}</h2>
             </div>
@@ -70,16 +68,15 @@ class App extends React.Component {
             </div>
         </div>
     );
-    onSubmit = () => {
 
+    onSubmit = () => {
+        alert(JSON.stringify(this.state.selectedIndexes,null));
     };
 
     render() {
-        let phone = this.state.background ? "blackButton" : "whiteButton";
-        console.log(this.state.selectedIndexes);
         return (
             <div className="App">
-                {json.map((value, index) => this.gridRender(phone, value, index))}
+                {json.map((value, index) => this.gridRender(value, index))}
                 <button onClick={this.onSubmit} className='submit'>
                     Submit
                 </button>
