@@ -2,4 +2,22 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border-color: black;
+    border-style: solid;
+}
+
+h2{
+    position: relative;
+    top: 50%;
+}
+
+.submit{
+    border-radius: 5px;
+    border: none;
+    font-family: Garuda;
+    background: aqua;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
 }

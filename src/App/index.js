@@ -43,7 +43,10 @@ class App extends React.Component {
     select = (index) => {
         let selection = [...this.state.selectedIndexes];
         if(selection.includes(index)){
-
+            const filteredAry = selection.filter((e) =>  e !== index );
+            this.setState({
+                selectedIndexes : filteredAry
+            })
         }else{
             this.setState({
                     ...this.state.selectedIndexes.push(index),
@@ -54,19 +57,26 @@ class App extends React.Component {
 
     gridRender = (value, index) => (
         <div key={index} onClick={() => this.select(value.id)} className='grid'>
-            <div>
+            <div className='name-content'>
                 <h2>{value.name}</h2>
             </div>
             <div>
-                <img src={value.url} alt={index}/>
+                <img src={value.url} alt={index} className='image'/>
             </div>
         </div>
     );
+    onSubmit = () => {
+
+    };
 
     render() {
+        console.log(this.state.selectedIndexes);
         return (
             <div className="App">
                 {json.map((value, index) => this.gridRender(value, index))}
+                <button onClick={this.onSubmit} className='submit'>
+                    Submit
+                </button>
             </div>
         );
     }
