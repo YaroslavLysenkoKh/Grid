@@ -23,7 +23,7 @@ h2{
     margin-top: 15px;
 }
 
-.gridBack{
+.selected-grid{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
